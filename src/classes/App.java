@@ -15,6 +15,10 @@ import java.util.Date;
  * @author User
  */
 public class App {
+
+    public App() {
+    }
+      
     public void run(){
         System.out.println("Привет!");
         Book book = new Book();
