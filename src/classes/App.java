@@ -22,7 +22,7 @@ public class App {
       
     public void run(){
         Scanner scanner = new Scanner(System.in);
-        boolean flag = true;
+        boolean flagExit = true;
         do{
             
             System.out.println("Список задач:");
@@ -35,23 +35,36 @@ public class App {
             System.out.println("6. Вернуть книгу");
             System.out.println("Введите номер задачи"); 
             String numberTask = scanner.nextLine();
-            if("0".equals(numberTask)){
-                flag = false;
-            System.out.println("Заканчиваем работу программы");
-            }else if("1".equals(numberTask)){
-            System.out.println("Выполняем 1 задачу");
-            }else if("2".equals(numberTask)){
-            System.out.println("Выполняем 2 задачу");
-            }else if("3".equals(numberTask)){
-            System.out.println("Выполняем 3 задачу");
-            }else if("4".equals(numberTask)){
-            System.out.println("Выполняем 4 задачу");
-            }else if("5".equals(numberTask)){
-            System.out.println("Выполняем 5 задачу");
-            }else if("6".equals(numberTask)){
-            System.out.println("Выполняем 6 задачу");
+            if(null != numberTask)switch (numberTask) {
+                case "0":
+                    flagExit = false;
+                    System.out.println("Заканчиваем работу программы");
+                    break;
+                case "1":
+                    System.out.println("Новая книга");
+                    BookProvider bookProvider = new BookProvider();
+                    Book book = bookProvider.createBook();
+                    System.out.println(book.toString());
+                    break;
+                case "2":
+                    System.out.println("Выполняем 2 задачу");
+                    break;
+                case "3":
+                    System.out.println("Выполняем 3 задачу");
+                    break;
+                case "4":
+                    System.out.println("Выполняем 4 задачу");
+                    break;
+                case "5":
+                    System.out.println("Выполняем 5 задачу");
+                    break;
+                case "6":
+                    System.out.println("Выполняем 6 задачу");
+                    break;
+                default:
+                    break;
             }
-        }while(flag);
+        }while(flagExit);
 //        System.out.println("Привет!");
 //        Book book = new Book();
 //        book.setTitle("War and Peace");
