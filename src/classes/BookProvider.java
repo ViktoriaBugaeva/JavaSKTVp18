@@ -17,11 +17,11 @@ public class BookProvider {
         Scanner scanner = new Scanner(System.in);
         Book book = new Book();
         System.out.println("Название книги: ");
-        book.setTitle(scanner.nextLine());
+        book.setTitle(scanner.nextLine());// сканер считает и вернет то что мы ввели с клавиатуры
         System.out.println("Автор книги: ");
         book.setAuthor(scanner.nextLine());
         System.out.println("Год издания книги: ");
         book.setYear(new Integer(scanner.nextLine()));
-    return book;
+    return book;//всегда должен присутствовать, чтобы вернуть объект этого класса
     } 
 }
