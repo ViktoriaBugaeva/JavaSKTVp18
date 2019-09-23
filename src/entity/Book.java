@@ -5,11 +5,13 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class Book {
+public class Book implements Serializable{ //realizovyvaet dobavlenie pobaitovo
     private String title;
     private String author;
     private int year;

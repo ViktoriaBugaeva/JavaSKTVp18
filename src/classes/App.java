@@ -18,13 +18,16 @@ import java.util.Scanner;
  * @author user
  */
 public class App {
-
+    List<Book> listBooks = new ArrayList<>(); //класс относящийся к коллекции. этот метод описан в BookProvider
     public App() {
+        SaveToFile saveToFile = new SaveToFile();
+        listBooks = saveToFile.loadBooksFromFile();
+        
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in); //для вводаа данных с клавиатуры
-        List<Book> listBooks = new ArrayList<>(); //класс относящийся к коллекции. этот метод описан в BookProvider
+        
         List<Reader> listReaders = new ArrayList<>();
         List<History> listHistories = new ArrayList<>();
         HistoryProvider historyProvider = new HistoryProvider();
@@ -51,6 +54,8 @@ public class App {
                     BookProvider bookProvider = new BookProvider();
                     Book book = bookProvider.createBook();
                     listBooks.add(book);
+                    SaveToFile saveToFile = new SaveToFile();
+                    saveToFile.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); //распечатывает список описанный в методе
                     }
