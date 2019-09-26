@@ -36,7 +36,6 @@ public class Reader implements Serializable{
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
     }
     
-    
     public String getName() {
         return name;
     }
@@ -48,7 +47,5 @@ public class Reader implements Serializable{
     public String getEmail() {
         return email;
     }
-    
-    
     
 }
