@@ -23,35 +23,35 @@ import java.util.logging.Logger;
  */
 public class SaveToFile {
     public void saveBooks(List<Book> listBooks){
-        FileOutputStream fileOutputStream = null;
+        FileOutputStream fileOutputStream = null; //null - памяти под эту переменную не выделено
         ObjectOutputStream objectOutputStream = null;
-        try {
-            fileOutputStream = new FileOutputStream("Books.txt");
+        try { // try - попробуй (для проверки ошибок)
+            fileOutputStream = new FileOutputStream("Books.txt"); //выделем файл и отправить по зеленой трубе. из App мы работаем в List<Books>
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(listBooks);
-            objectOutputStream.flush();
+            objectOutputStream.flush(); //метод flush толкает объект по зеленой трубе на HDD, для записи
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: на диске нет файла Books.txt");
-        } catch (IOException ex) {
+        } catch (IOException ex) { //ошибка ввода/вывода
             System.out.println("Ошибка: записать в файл не удалось");
-        } finally{
+        } finally{ //finally - выполняется в любом случае, есть или нет ошибки
             if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
                 }
             }
             if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
                 }
             }
         }
     }
-    public List<Book> loadBooksFromFile(){
+    public List<Book> loadBooksFromFile(){ //возвращает 
         List<Book> listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -62,7 +62,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Books.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Books.txt не удолось");
+            System.out.println("Ошибка: чтение файла Books.txt не удалось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Book");
         }finally{
