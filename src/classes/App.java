@@ -19,17 +19,20 @@ import java.util.Scanner;
  */
 public class App {
     List<Book> listBooks = new ArrayList<>(); //класс относящийся к коллекции. этот метод описан в BookProvider
+    List<Reader> listReaders = new ArrayList<>();
     public App() {
         SaveToFile saveToFile = new SaveToFile();
         listBooks = saveToFile.loadBooksFromFile(); 
+        listReaders = saveToFile.loadReadersFromFile(); 
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in); //для вводаа данных с клавиатуры
         
-        List<Reader> listReaders = new ArrayList<>();
+        
         List<History> listHistories = new ArrayList<>();
         HistoryProvider historyProvider = new HistoryProvider();
+        SaveToFile saveToFile = new SaveToFile();
         boolean flagExit = true;
         do{
             System.out.println("Список задач:");
@@ -53,7 +56,6 @@ public class App {
                     BookProvider bookProvider = new BookProvider();
                     Book book = bookProvider.createBook();
                     listBooks.add(book);
-                    SaveToFile saveToFile = new SaveToFile();
                     saveToFile.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); //распечатывает список описанный в методе
@@ -64,6 +66,8 @@ public class App {
                     ReaderProvider readerProvider = new ReaderProvider();
                     Reader reader = readerProvider.createReader();
                     listReaders.add(reader);
+                    
+                    saveToFile.saveReaders(listReaders);
                     for(Reader r : listReaders){
                        System.out.println(r.toString()); 
                     }

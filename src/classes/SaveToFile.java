@@ -6,6 +6,7 @@
 package classes;
 
 import entity.Book;
+import entity.Reader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,10 +27,10 @@ public class SaveToFile {
         FileOutputStream fileOutputStream = null; //null - памяти под эту переменную не выделено
         ObjectOutputStream objectOutputStream = null;
         try { // try - попробуй (для проверки ошибок)
-            fileOutputStream = new FileOutputStream("Books.txt"); //выделем файл и отправить по зеленой трубе. из App мы работаем в List<Books>
+            fileOutputStream = new FileOutputStream("Books.txt"); //выделем файл и отправить по трубе. из App мы работаем в List<Books>
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(listBooks);
-            objectOutputStream.flush(); //метод flush толкает объект по зеленой трубе на HDD, для записи
+            objectOutputStream.flush(); //метод flush толкает объект по трубе на HDD, для записи
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: на диске нет файла Books.txt");
         } catch (IOException ex) { //ошибка ввода/вывода
@@ -62,7 +63,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Books.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Books.txt не удалось");
+            System.out.println("Ошибка: чтение файла Books.txt не удлось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Book");
         }finally{
@@ -82,5 +83,68 @@ public class SaveToFile {
             }
         }
         return listBooks;
+    }
+        
+        
+        public void saveReaders(List<Reader> listReaders){
+        FileOutputStream fileOutputStream = null; //null - памяти под эту переменную не выделено
+        ObjectOutputStream objectOutputStream = null;
+        try { // try - попробуй (для проверки ошибок)
+            fileOutputStream = new FileOutputStream("Reader.txt"); //выделем файл и отправить по трубе. из App мы работаем в List<Books>
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(listReaders);
+            objectOutputStream.flush(); //метод flush толкает объект по трубе на HDD, для записи
+        } catch (FileNotFoundException ex) {
+            System.out.println("Ошибка: на диске нет файла Reader.txt");
+        } catch (IOException ex) { //ошибка ввода/вывода
+            System.out.println("Ошибка: записать в файл не удалось");
+        } finally{ //finally - выполняется в любом случае, есть или нет ошибки
+            if(objectOutputStream != null){
+                try {
+                    objectOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
+                }
+            }
+            if(fileOutputStream != null){
+                try {
+                    fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
+                }
+            }
+        }
+    }
+    public List<Reader> loadReadersFromFile(){ //возвращает 
+        List<Reader> listReaders = new ArrayList<>();
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            fileInputStream = new FileInputStream("Reader.txt");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            listReaders = (List<Reader>) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Ошибка: не найден файл Reader.txt");
+        } catch (IOException ex) {
+            System.out.println("Ошибка: чтение файла Reader.txt не удлось");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Ошибка: нет класса Reader");
+        }finally{
+            if(objectInputStream != null){
+                try {
+                    objectInputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(fileInputStream != null){
+                try {
+                    fileInputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return listReaders;
     }   
 }
