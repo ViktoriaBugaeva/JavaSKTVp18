@@ -21,8 +21,7 @@ public class App {
     List<Book> listBooks = new ArrayList<>(); //класс относящийся к коллекции. этот метод описан в BookProvider
     public App() {
         SaveToFile saveToFile = new SaveToFile();
-        listBooks = saveToFile.loadBooksFromFile();
-        
+        listBooks = saveToFile.loadBooksFromFile(); 
     }
     
     public void run(){
