@@ -11,21 +11,20 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Book implements Serializable{ //realizovyvaet dobavlenie pobaitovo
+public class Book implements Serializable { //realizovyvaet dobavlenie pobaitovo
+
     private String title;
     private String author;
     private int year;
-    
+
     public Book() {
     }
-    
+
     public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
     }
-
-    
 
     public void setTitle(String title) {
         this.title = title;
@@ -39,8 +38,6 @@ public class Book implements Serializable{ //realizovyvaet dobavlenie pobaitovo
         this.year = year;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + '}';
@@ -57,7 +54,5 @@ public class Book implements Serializable{ //realizovyvaet dobavlenie pobaitovo
     public int getYear() {
         return year;
     }
-    
-    
-    
+
 }

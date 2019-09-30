@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Reader implements Serializable{
+public class Reader implements Serializable {
+
     private String name;
     private String lastname;
     private String email;
@@ -35,7 +36,7 @@ public class Reader implements Serializable{
     public String toString() {
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
     }
-  
+
     public String getName() {
         return name;
     }
