@@ -16,31 +16,15 @@ public class Book implements Serializable { //realizovyvaet dobavlenie pobaitovo
     private String title;
     private String author;
     private int year;
+    private int quantity;
+    private int count;
+
+   public Book(String title, String author, int year, int quantity, int count) {
+       
+   }
 
     public Book() {
-    }
-
-    public Book(String title, String author, int year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + '}';
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getTitle() {
@@ -55,4 +39,31 @@ public class Book implements Serializable { //realizovyvaet dobavlenie pobaitovo
         return year;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

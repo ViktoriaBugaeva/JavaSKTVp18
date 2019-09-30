@@ -23,16 +23,19 @@ public class HistoryProvider {
         History history = new History();
         System.out.println("Список книг: ");
         for(int i=0; i<listBooks.size();i++){
+            if(listBooks.get(i).getCount() > 0){
             System.out.printf("%d. Название книги: %s, автор: %s, год издания: %d%n" //%d- цифра, %s- строка, %n - новая строка
                     ,i+1//чтобы начиналось с 1 
                     ,listBooks.get(i).getTitle()
                     ,listBooks.get(i).getAuthor()
                     ,listBooks.get(i).getYear()
-            );
+                );
+            }
         }
         System.out.print("Выберите номер выдаваемой книги:"); 
         int takeBookNum = scanner.nextInt();
         Book book = listBooks.get(takeBookNum-1);// отнимаем 1, чтобы получить индек массива
+        book.setCount(book.getCount()-1);
         System.out.println("Список читателей: ");
         int i=0;
         for(Reader r : listReaders){

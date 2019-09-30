@@ -130,7 +130,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Reader.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Reader.txt не удлось");
+            System.out.println("Ошибка: чтение файла Reader.txt не удалось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Reader");
         } finally {
@@ -193,7 +193,7 @@ public class SaveToFile {
         } catch (FileNotFoundException ex) {
             System.out.println("Ошибка: не найден файл Histories.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Histories.txt не удолось");
+            System.out.println("Ошибка: чтение файла Histories.txt не удалось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса History");
         } finally {

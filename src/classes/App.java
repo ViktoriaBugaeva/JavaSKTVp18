@@ -47,7 +47,7 @@ public class App {
             System.out.println("6. Вернуть книгу");
             System.out.println("7. Список выданых книг");
             System.out.println("Введите номер задачи:");
-            
+
             String numberTask = scanner.nextLine();
             if (null != numberTask) {
                 switch (numberTask) {
@@ -82,6 +82,7 @@ public class App {
                         for (Book b : listBooks) {
                             System.out.println(i + ". " + b.toString());
                             i++;//сколько раз выполниться for, столько раз i++ прибавит
+                            
                         }
                         break;
                     case "4":
@@ -103,12 +104,21 @@ public class App {
                         break;
                     case "7":
                         System.out.println("Список выданых книг");
+                        i = 1;
                         for (History h : listHistories) {
-                            System.out.println(h.toString());
+                            if (h.getReturnBook() == null) {
+                                System.out.printf(i + ". " + h.toString());
+                                i++;
+                            }
+                        }
+                        if (i < 2) {
+                            System.out.println("Нет выданных книг");
+                            System.out.println();
                         }
                         break;
                 }
             }
+
         } while (flagExit);
 //        System.out.println("Привет!");
 //        Book book = new Book();
