@@ -45,7 +45,9 @@ public class App {
             System.out.println("4. Список читателей");
             System.out.println("5. Выдать книгу");
             System.out.println("6. Вернуть книгу");
+            System.out.println("7. Список выданых книг");
             System.out.println("Введите номер задачи:");
+            
             String numberTask = scanner.nextLine();
             if (null != numberTask) {
                 switch (numberTask) {
@@ -99,7 +101,11 @@ public class App {
                         historyProvider.returnBook(listHistories);//в хистори провайдер передаем историю
                         saveToFile.saveHistories(listHistories);
                         break;
-                    default:
+                    case "7":
+                        System.out.println("Список выданых книг");
+                        for (History h : listHistories) {
+                            System.out.println(h.toString());
+                        }
                         break;
                 }
             }
