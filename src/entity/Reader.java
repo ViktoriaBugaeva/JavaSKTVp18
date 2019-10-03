@@ -3,7 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entity;
+
+import java.io.Serializable;
+
+/**
+ *
+ * @author user
+ */
+public class Reader implements Serializable{
+    private String name;
+    private String lastname;
+    private String email;
+
+    public Reader() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
+    }
+    
+}
+
+/*package entity;
 
 import java.io.Serializable;
 
@@ -11,7 +59,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Reader implements Serializable {
+/*public class Reader implements Serializable {
 
     private String name;
     private String lastname;
@@ -49,4 +97,4 @@ public class Reader implements Serializable {
         return email;
     }
 
-}
+}*/
