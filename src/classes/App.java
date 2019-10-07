@@ -49,7 +49,7 @@ public class App {
             String numberTask = scanner.nextLine();
             if(null != numberTask)
             switch (numberTask) {
-                case "0":
+                case "0": //case - sobytie, sluchai
                     flagExit = false;
                     System.out.println("Заканчиваем работу программы");
                     break;

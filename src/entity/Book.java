@@ -7,13 +7,21 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 /**
  *
  * @author user
  */
+@Entity
 public class Book implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //kursor postavit v skobkah i nazat Ctrl+probel
+    private Long id;
     private String title;
     private String author;
     private int year;
@@ -30,6 +38,8 @@ public class Book implements Serializable{
         this.quantity = quantity;
         this.count = quantity;
     }
+    
+    
 
     public String getTitle() {
         return title;
@@ -77,72 +87,15 @@ public class Book implements Serializable{
     public void setCount(int count) {
         this.count = count;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
     
     
     
 }
-
-/*package entity;
-
-import java.io.Serializable;
-
-/**
- *
- * @author User
- */
-/*public class Book implements Serializable { //realizovyvaet dobavlenie pobaitovo
-
-    private String title;
-    private String author;
-    private int year;
-    private int quantity;
-    private int count;
-
-   public Book(String title, String author, int year, int quantity, int count) {
-       
-   }
-
-    public Book() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-}*/
