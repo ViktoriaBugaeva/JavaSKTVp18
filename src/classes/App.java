@@ -23,17 +23,17 @@ public class App {
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistories = new ArrayList<>();
     public App() {
-        SaveToFile saveToFile = new SaveToFile();
-        listBooks = saveToFile.loadBooks();
-        listReaders = saveToFile.loadReaders();
-        listHistories = saveToFile.loadHistories();
+        SaveToBase saveToBase = new SaveToFile();
+        listBooks = saveToBase.loadBooks();
+        listReaders = saveToBase.loadReaders();
+        listHistories = saveToBase.loadHistories();
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in);
         
         HistoryProvider historyProvider = new HistoryProvider();
-        SaveToFile saveToFile = new SaveToFile();                    
+        SaveToBase saveToBase = new SaveToFile();                    
         boolean flagExit = true;
         do{
             System.out.println("Список задач:");
