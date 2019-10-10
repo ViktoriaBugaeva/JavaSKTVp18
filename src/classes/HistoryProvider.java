@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package classes;
 
 import entity.Book;
@@ -22,9 +21,7 @@ public class HistoryProvider {
     public History createHistory(List<Book>listBooks,List<Reader>listReaders){
         
         History history = new History();
-        
         System.out.println("Список книг: ");
-        int countCurrentBooks=0;
         for(int i=0; i<listBooks.size();i++){
             if(listBooks.get(i).getCount() > 0){
                 System.out.printf("%d. Название книги: %s, автор: %s, год издания: %d%n"
@@ -33,55 +30,39 @@ public class HistoryProvider {
                     ,listBooks.get(i).getAuthor()
                     ,listBooks.get(i).getYear()
                 );
-                countCurrentBooks++;
             }
             
-            
-        }
-        if(countCurrentBooks == 0){
-            System.out.println("Все книги выданы.");
-            return null;
         }
         System.out.print("Выберите номер выдаваемой книги:"); 
         int takeBookNum = scanner.nextInt();
         Book book = listBooks.get(takeBookNum-1);
-        if(book.getCount()>0){
-            book.setCount(book.getCount()-1);
-            System.out.println("Список читателей: ");
-            int i=0;
-            for(Reader r : listReaders){
-                System.out.printf("%d. Имя и фамилия читателя: %s %s, email: %s%n"
-                        ,i+1
-                        ,r.getName()
-                        ,r.getLastname()
-                        ,r.getEmail()
-                );
-                i++;
-            }
-            System.out.print("Выберите номер читателя:"); 
-            int readerNum = scanner.nextInt();
-            Reader reader = listReaders.get(readerNum-1);
-            history.setBook(book);
-            history.setReader(reader);
-            history.setTakeOn(new Date());
-            return history;
-        }else{
-            System.out.println("Книги \""
-                +book.getTitle()
-                +"\" уже все выданны."
+        book.setCount(book.getCount()-1);
+        System.out.println("Список читателей: ");
+        int i=0;
+        for(Reader r : listReaders){
+            System.out.printf("%d. Имя и фамилия читателя: %s %s, email: %s%n"
+                    ,i+1
+                    ,r.getName()
+                    ,r.getLastname()
+                    ,r.getEmail()
             );
-            return null;
+            i++;
         }
-        
+        System.out.print("Выберите номер читателя:"); 
+        int readerNum = scanner.nextInt();
+        Reader reader = listReaders.get(readerNum-1);
+        history.setBook(book);
+        history.setReader(reader);
+        history.setTakeOn(new Date());
+        return history;
     }
-            
     public void returnBook(List<History> listHistories){
         
         System.out.println("Список читаемых книг");
         int i=1;
         for(History history : listHistories){
             if(history.getReturnDate() == null 
-                    && history.getBook().getCount() <= history.getBook().getQuantity()){
+                    && history.getBook().getCount() < history.getBook().getQuantity()){
                 System.out.printf("%d. Читатель %s %s читает книгу %s%n"
                     ,i
                     ,history.getReader().getName()
@@ -95,13 +76,6 @@ public class HistoryProvider {
         int numHistory = scanner.nextInt();
         History history = listHistories.get(numHistory-1);
         Book book = history.getBook();
-        if(book.getCount() == book.getQuantity()){
-            System.out.println("Все книги \""
-                +listHistories.get(numHistory-1).getBook().getTitle()
-                +"\" в библиотеке."
-            );
-            return;
-        }
         book.setCount(book.getCount()+1);
         history.setReturnDate(new Date());
         System.out.println("Книга \""

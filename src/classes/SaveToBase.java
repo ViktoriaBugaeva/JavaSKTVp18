@@ -16,28 +16,31 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author User
+ * @author user
  */
 public class SaveToBase {
     EntityManager em;
     EntityTransaction tx;
+    
 
     public SaveToBase() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SKTVp18LibraryPU");
-        em =emf.createEntityManager();
+        em = emf.createEntityManager();
         tx = em.getTransaction();
     }
     
     
     public void saveBooks(List<Book> listBooks){
         tx.begin();
-        em.persist(listBooks);
+            for(int i=0; i<listBooks.size();i++){
+                if(i==listBooks.size()-1)
+                em.persist(listBooks.get(i));
+            }
         tx.commit();
     }
     public List<Book> loadBooks(){
-        return (List<Book>) em.createQuery("SELECT b FROM Book b");
-        .getResultList();
-        
+        return em.createQuery("SELECT b FROM Book b")
+                .getResultList();
     }
     public void saveReaders(List<Reader> listReaders){
         
@@ -46,13 +49,9 @@ public class SaveToBase {
         return null;
     }
     void saveHistories(List<History> listHistories) {
+        
     }
     List<History> loadHistories() {
         return null;
     }
-
-    private void getResultList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
