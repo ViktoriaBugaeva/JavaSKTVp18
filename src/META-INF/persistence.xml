@@ -3,6 +3,8 @@
   <persistence-unit name="SKTVp18LibraryPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.Book</class>
+    <class>entity.Reader</class>
+    <class>entity.History</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sktvp18library?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="sktvp18library"/>

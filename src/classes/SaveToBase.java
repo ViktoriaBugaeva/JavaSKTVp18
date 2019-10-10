@@ -43,15 +43,27 @@ public class SaveToBase {
                 .getResultList();
     }
     public void saveReaders(List<Reader> listReaders){
-        
+        tx.begin();
+            for(int i=0; i<listReaders.size();i++){
+                if(i==listReaders.size()-1)
+                em.persist(listReaders.get(i));
+            }
+        tx.commit();
     }
     public List<Reader> loadReaders(){
-        return null;
+        return em.createQuery("SELECT r FROM Reader r")
+                .getResultList();
     }
     void saveHistories(List<History> listHistories) {
-        
+        tx.begin();
+            for(int i=0; i<listHistories.size();i++){
+                if(i==listHistories.size()-1)
+                em.persist(listHistories.get(i));
+            }
+        tx.commit();
     }
     List<History> loadHistories() {
-        return null;
+         return em.createQuery("SELECT h FROM History h")
+                .getResultList();
     }
 }
