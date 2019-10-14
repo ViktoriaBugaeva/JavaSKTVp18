@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.io.Serializable;
@@ -12,13 +11,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 /**
  *
  * @author user
  */
 @Entity
-public class Book implements Serializable{
+public class Book implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //kursor postavit v skobkah i nazat Ctrl+probel
     private Long id;
@@ -27,7 +26,7 @@ public class Book implements Serializable{
     private int year;
     private int quantity;
     private int count;
-    
+
     public Book() {
     }
 
@@ -38,8 +37,6 @@ public class Book implements Serializable{
         this.quantity = quantity;
         this.count = quantity;
     }
-    
-    
 
     public String getTitle() {
         return title;
@@ -72,12 +69,7 @@ public class Book implements Serializable{
     public void setQuantity(int quantity) {
         this.setCount(quantity - this.quantity + count);
         this.quantity = quantity;
-        
-    }
 
-    @Override
-    public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + ", quantity=" + quantity +", count =" + count + '}';
     }
 
     public int getCount() {
@@ -95,7 +87,10 @@ public class Book implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + ", quantity=" + quantity + ", count =" + count + '}';
+    }
+
 }
