@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package entity;
 
 import java.io.Serializable;
@@ -18,10 +17,11 @@ import javax.persistence.Id;
  * @author user
  */
 @Entity
-public class Reader implements Serializable{
+public class Reader implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private String lastname;
     @Column(unique = true)
@@ -29,8 +29,6 @@ public class Reader implements Serializable{
 
     public Reader() {
     }
-
-    
 
     public String getName() {
         return name;
@@ -56,19 +54,19 @@ public class Reader implements Serializable{
         this.email = email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long Id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Reader{" + "name=" + name + ", lastname=" + lastname + ", email=" + email + '}';
     }
 
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
-    
 }
 
 /*package entity;
@@ -79,7 +77,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-/*public class Reader implements Serializable {
+ /*public class Reader implements Serializable {
 
     private String name;
     private String lastname;

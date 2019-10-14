@@ -77,6 +77,7 @@ public class HistoryProvider {
         History history = listHistories.get(numHistory-1);
         Book book = history.getBook();
         book.setCount(book.getCount()+1);
+        history.setBook(book);
         history.setReturnDate(new Date());
         System.out.println("Книга \""
                 +listHistories.get(numHistory-1).getBook().getTitle()

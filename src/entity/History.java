@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
  * @author user
  */
 @Entity
-public class History implements Serializable{
+public class History implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -68,11 +69,6 @@ public class History implements Serializable{
         this.returnDate = returnDate;
     }
 
-    @Override
-    public String toString() {
-        return "History{" + "book=" + book + ", reader=" + reader + ", takeOn=" + takeOn + ", returnDate=" + returnDate + '}';
-    }
-
     public Long getId() {
         return id;
     }
@@ -80,7 +76,12 @@ public class History implements Serializable{
     public void setId(Long id) {
         this.id = id;
     }
-    
+
+    @Override
+    public String toString() {
+        return "History{" + "book=" + book + ", reader=" + reader + ", takeOn=" + takeOn + ", returnDate=" + returnDate + '}';
+    }
+
 }
 
 /*package entity;
@@ -92,7 +93,7 @@ import java.util.Date;
  *
  * @author user
  */
-/*public class History implements Serializable {
+ /*public class History implements Serializable {
 
     private Book book;
     private Reader reader;
