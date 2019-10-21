@@ -74,17 +74,16 @@ public class HistoryProvider {
         }
         System.out.println("Выберите возвращаемую книгу: ");
         int numHistory = scanner.nextInt();
-        History history = listHistories.get(numHistory-1);
-        Book book = history.getBook();
-        book.setCount(book.getCount()+1);
-        history.setBook(book);
-        history.setReturnDate(new Date());
+        listHistories.get(numHistory-1).getBook().setCount(listHistories.get(numHistory-1).getBook().getCount()+1);
+        listHistories.get(numHistory-1).setReturnDate(new Date());
         System.out.println("Книга \""
                 +listHistories.get(numHistory-1).getBook().getTitle()
-                +"\" возвращена."
+                +"\" возвращена. Осталось книг "+listHistories.get(numHistory-1).getBook().getCount()
         );
     }
 }
+
+
 
 /*package classes;
 

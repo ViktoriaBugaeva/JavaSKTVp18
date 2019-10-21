@@ -7,6 +7,8 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,14 +22,13 @@ import javax.persistence.TemporalType;
  * @author user
  */
 @Entity
-public class History implements Serializable {
-
+public class History implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @OneToOne()
     private Book book;
-    @OneToOne
+    @OneToOne()
     private Reader reader;
     @Temporal(TemporalType.TIMESTAMP)
     private Date takeOn;
@@ -69,6 +70,11 @@ public class History implements Serializable {
         this.returnDate = returnDate;
     }
 
+    @Override
+    public String toString() {
+        return "History{id=" +id + "book=" + book + ", reader=" + reader + ", takeOn=" + takeOn + ", returnDate=" + returnDate + '}';
+    }
+
     public Long getId() {
         return id;
     }
@@ -78,11 +84,48 @@ public class History implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "History{" + "book=" + book + ", reader=" + reader + ", takeOn=" + takeOn + ", returnDate=" + returnDate + '}';
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.book);
+        hash = 97 * hash + Objects.hashCode(this.reader);
+        hash = 97 * hash + Objects.hashCode(this.takeOn);
+        hash = 97 * hash + Objects.hashCode(this.returnDate);
+        return hash;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final History other = (History) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.book, other.book)) {
+            return false;
+        }
+        if (!Objects.equals(this.reader, other.reader)) {
+            return false;
+        }
+        if (!Objects.equals(this.takeOn, other.takeOn)) {
+            return false;
+        }
+        if (!Objects.equals(this.returnDate, other.returnDate)) {
+            return false;
+        }
+        return true;
+    }
+    
 }
+
 
 /*package entity;
 
