@@ -22,16 +22,21 @@ public class App {
     List<History> listHistories = new ArrayList<>();
     public App() {
         SaveToBase saveToBase = new SaveToBase();
+        //SaveToFile saveToFile = new SaveToFile();
         listBooks = saveToBase.loadBooks();
+        //listBooks = saveToFile.loadBooks();
         listReaders = saveToBase.loadReaders();
+        //listReaders = saveToFile.loadReaders();
         listHistories = saveToBase.loadHistories();
+        //listHistories = saveToFile.loadHistories();            
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in);
         
         HistoryProvider historyProvider = new HistoryProvider();
-        SaveToBase saveToBase = new SaveToBase();                    
+        SaveToBase saveToBase = new SaveToBase();  
+        //SaveToFile saveToFile = new SaveToFile();  
         boolean flagExit = true;
         do{
             System.out.println("Список задач:");
@@ -57,6 +62,7 @@ public class App {
                     Book book = bookProvider.createBook();
                     listBooks.add(book);
                     saveToBase.saveBooks(listBooks);
+                    //saveToFile.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); 
                     }
@@ -67,6 +73,7 @@ public class App {
                     Reader reader = readerProvider.createReader();
                     listReaders.add(reader);
                     saveToBase.saveReaders(listReaders);
+                    //saveToFile.saveReaders(listReaders);
                     for(Reader r : listReaders){
                        System.out.println(r.toString()); 
                     }
@@ -90,11 +97,13 @@ public class App {
                     History history = historyProvider.createHistory(listBooks, listReaders);
                     listHistories.add(history);
                     saveToBase.saveHistories(listHistories);
+                    //saveToFile.saveHistories(listHistories);
                     break;
                 case "6":
                     System.out.println("Возвращение книги");
                     historyProvider.returnBook(listHistories);
                     saveToBase.saveHistories(listHistories);
+                    //saveToFile.saveHistories(listHistories);
                     break;
                 case "7":
                     System.out.println("Список выданных книг");
