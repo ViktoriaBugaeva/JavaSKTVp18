@@ -8,6 +8,7 @@ package classes;
 import entity.Book;
 import entity.History;
 import entity.Reader;
+import interfaces.Saveble;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,11 +21,11 @@ import javax.persistence.Persistence;
  *
  * @author user
  */
-public class SaveToBase {
+public class SaveToBase implements Saveble{
     EntityManager em;
     EntityTransaction tx;
     
-
+    
     public SaveToBase() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SKTVp18LibraryPU");
         em = emf.createEntityManager();
@@ -32,6 +33,7 @@ public class SaveToBase {
     }
     
     
+    @Override
     public void saveBooks(List<Book> listBooks){
         List<Book> listBooksSaved = loadBooks();
         
@@ -50,10 +52,12 @@ public class SaveToBase {
             }
         }
     }
+    @Override
     public List<Book> loadBooks(){
         return em.createQuery("SELECT b FROM Book b")
                 .getResultList();
     }
+    @Override
     public void saveReaders(List<Reader> listReaders){
         List<Reader> listReadersSaved = loadReaders();
         
@@ -73,11 +77,13 @@ public class SaveToBase {
         }
         
     }
+    @Override
     public List<Reader> loadReaders(){
         return em.createQuery("SELECT r FROM Reader r")
                 .getResultList();
     }
-    void saveHistories(List<History> listHistories) {
+    @Override
+    public void saveHistories(List<History> listHistories) {
         for(History delHistory : listHistories){
             int flag = 0;
             for(int i=0;i<listHistories.size();i++){
@@ -137,7 +143,8 @@ public class SaveToBase {
             tx.commit();
         }
     }
-    List<History> loadHistories() {
+    @Override
+    public List<History> loadHistories() {
         return em.createQuery("SELECT h FROM History h")
                 .getResultList();
     }

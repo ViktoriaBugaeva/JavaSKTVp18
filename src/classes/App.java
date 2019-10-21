@@ -8,6 +8,7 @@ package classes;
 import entity.Book;
 import entity.History;
 import entity.Reader;
+import interfaces.Saveble;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,15 +21,13 @@ public class App {
     List<Book> listBooks = new ArrayList<>();
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistories = new ArrayList<>();
+    Saveble saveble;
     public App() {
-        SaveToBase saveToBase = new SaveToBase();
-        //SaveToFile saveToFile = new SaveToFile();
-        listBooks = saveToBase.loadBooks();
-        //listBooks = saveToFile.loadBooks();
-        listReaders = saveToBase.loadReaders();
-        //listReaders = saveToFile.loadReaders();
-        listHistories = saveToBase.loadHistories();
-        //listHistories = saveToFile.loadHistories();            
+        saveble = new SaveToBase();
+        listBooks = saveble.loadBooks();
+        listReaders = saveble.loadReaders();
+        listHistories = saveble.loadHistories();
+                  
     }
     
     public void run(){
@@ -61,8 +60,7 @@ public class App {
                     BookProvider bookProvider = new BookProvider();
                     Book book = bookProvider.createBook();
                     listBooks.add(book);
-                    saveToBase.saveBooks(listBooks);
-                    //saveToFile.saveBooks(listBooks);
+                    saveble.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); 
                     }
@@ -72,7 +70,7 @@ public class App {
                     ReaderProvider readerProvider = new ReaderProvider();
                     Reader reader = readerProvider.createReader();
                     listReaders.add(reader);
-                    saveToBase.saveReaders(listReaders);
+                    saveble.saveReaders(listReaders);
                     //saveToFile.saveReaders(listReaders);
                     for(Reader r : listReaders){
                        System.out.println(r.toString()); 
@@ -96,13 +94,13 @@ public class App {
                     System.out.println("Выдаем книгу читателю");
                     History history = historyProvider.createHistory(listBooks, listReaders);
                     listHistories.add(history);
-                    saveToBase.saveHistories(listHistories);
+                    saveble.saveHistories(listHistories);
                     //saveToFile.saveHistories(listHistories);
                     break;
                 case "6":
                     System.out.println("Возвращение книги");
                     historyProvider.returnBook(listHistories);
-                    saveToBase.saveHistories(listHistories);
+                    saveble.saveHistories(listHistories);
                     //saveToFile.saveHistories(listHistories);
                     break;
                 case "7":

@@ -8,6 +8,7 @@ package classes;
 import entity.Book;
 import entity.History;
 import entity.Reader;
+import interfaces.Saveble;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,8 +24,9 @@ import java.util.logging.Logger;
  *
  * @author user
  */
-public class SaveToFile {
+public class SaveToFile implements Saveble{
     
+    @Override
     public void saveBooks(List<Book> listBooks){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -54,6 +56,7 @@ public class SaveToFile {
             }
         }
     }
+    @Override
     public List<Book> loadBooks(){
         List<Book> listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null;
@@ -86,6 +89,7 @@ public class SaveToFile {
         }
         return listBooks;
     }   
+    @Override
     public void saveReaders(List<Reader> listReaders){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
@@ -115,6 +119,7 @@ public class SaveToFile {
             }
         }
     }
+    @Override
     public List<Reader> loadReaders(){
         List<Reader> listReaders = new ArrayList<>();
         FileInputStream fileInputStream = null;
@@ -148,7 +153,8 @@ public class SaveToFile {
         return listReaders;
     }   
 
-    void saveHistories(List<History> listHistories) {
+    @Override
+    public void saveHistories(List<History> listHistories) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -178,7 +184,8 @@ public class SaveToFile {
         }
     }
 
-    List<History> loadHistories() {
+    @Override
+    public List<History> loadHistories() {
         List<History> listHistories = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
