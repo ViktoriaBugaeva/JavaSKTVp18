@@ -22,7 +22,14 @@ public class App {
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistories = new ArrayList<>();
     Saveble saveble;
-    public App() {
+    public App(String flag) {
+        if(flag.equals("base")){
+            saveble = new SaveToBase();
+        }else if(flag.equals("file")){
+            saveble = new SaveToFile();
+        }else{
+            saveble = new SaveToBase();
+        }
         saveble = new SaveToBase();
         listBooks = saveble.loadBooks();
         listReaders = saveble.loadReaders();
